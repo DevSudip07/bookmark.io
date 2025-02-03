@@ -43,6 +43,17 @@ eyeIcon.addEventListener('click', () => {
     }
 });
 
+const loginEyeIcon = document.querySelector('.login-eye');
+loginEyeIcon.addEventListener('click', () => {
+    if (userPassword.type === 'password') {
+        userPassword.type = 'text';
+        loginEyeIcon.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+    } else {
+        userPassword.type = 'password';
+        loginEyeIcon.innerHTML = '<i class="fa-regular fa-eye"></i>';
+    }
+});
+
 // 🔍 Check two passwords are same only for sign up page
 
 password.addEventListener('input', validatePassword);
