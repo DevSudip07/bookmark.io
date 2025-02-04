@@ -1,14 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOOKMARK APP | SUDIP</title>
+    <!-- ============ HEAD ICON ============ -->
+    <link rel="icon" href="./assets/img/logo.png" />
+    <!-- ============ EXTERNAL CSS ============ -->
+     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/form.css">
+    <!-- ============ RESPONSIVE CSS ============ -->
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <!-- ============ FONT AWESOME CDN ============ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- ============ GOOGLE FONT CDN ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+    </style>
 </head>
+
 <body>
-    <center>
-        <img src="image.png" alt="" width="35%" >
-    </center>
+    <header>
+        <div>
+            <img src="./assets/img/logo.png" alt="LOGO IMAGE" /><small>udip</small>
+        </div>
+        <div class="profile">
+            <div class="profile-pic" title="Your Profile"><img class="profile-img"  src="./assets/img/profile.png" alt=""></div>
+            <form class="profile-form" action="">
+                <input class="profile-pic-input" type="file" accept="image/*" name="name" placeholder="Name" />
+                <button class="save-btn">Save</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <hr>
+        <section>
+            <aside>
+                <div class="container">
+                    <h1>Bookmark Manager</h1>
+            
+                    <div class="input-group">
+                        <input type="text" id="categoryInput" placeholder="Enter Category Name">
+                        <button onclick="addCategory()">Add Category</button>
+                    </div>
+            
+                    <div id="categories">
+                    </div>
+                </div>
+            </aside>
+            <div class="right-side">
+
+            </div>
+        </section>
+    </main>
+
+    
+
+
+
+
+
+
+    
+
+    <script src="./js/home.js"></script>
+    <script src="./js/bookmark.js"></script>
+
+
 </body>
+
 </html>

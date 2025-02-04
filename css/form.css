@@ -1,8 +1,8 @@
 
 .form-bg {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: black;
     align-content: center;
     top: 0;
@@ -15,7 +15,7 @@
 .form-container {
     position: relative;
     width: 60%;
-    height: 95%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,21 +27,21 @@
 
 .close-icon  {
     position: absolute;
-    font-size: 40px;
-    top: 25px;
-    right: 200px;
+    font-size: 2vw;
+    top: 10vh;
+    right: 60px;
     z-index: 999;
 }
 
 .close-icon:hover {
-    animation: closeAnimation .2s  infinite ;
+    animation: closeAnimation .5s  infinite ;
     transition: .3s all ease-in-out;
     cursor: pointer;
 }
 
 @keyframes closeAnimation {
     0% {
-        font-size: 45px;
+        font-size: 40px;
     }
     100% {
         rotate:10px;
@@ -49,17 +49,19 @@
 }
 
 .signUp, .login {
-    width: 70%;
+    width: 100%;
     height: 100%;
     padding: 0 50px;
     margin: auto;
     background: linear-gradient(to top, rgb(0, 0, 133), rgb(0, 0, 57));
     transition: .5s all ease-out;
     border-radius: 15px;
+    align-content: center;
 
     & h1 {
+        font-size: 2vw;
         text-align: center;
-        padding: 30px;
+        padding: 2vh;
     }
 
     & div {
@@ -79,8 +81,8 @@
         width: 100%;
         font-size: 16px;
         padding: 5px 15px;
-        margin-top: 15px;
-        margin-bottom: 5px;
+        margin-top: 1vh;
+        margin-bottom: .5vh;
         background: transparent;
         border: none;
         border-bottom: 2px solid white;

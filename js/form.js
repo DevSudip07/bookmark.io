@@ -96,6 +96,9 @@ signUpForm.addEventListener('submit', (e) => {
         setTimeout(() => {
             signUpButton.innerHTML = 'Sign Up';
             signUpForm.reset();
+            
+            loginForm.style.opacity = '100%';
+            loginForm.style.zIndex = '99';
         }, 3000);
 
     } else {
