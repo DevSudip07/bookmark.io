@@ -1,10 +1,13 @@
 const profilePic = document.querySelector('.profile-pic');
 const profilePicForm = document.querySelector('.profile-form');
 profilePic.addEventListener('click', ()=> {
-    profilePicForm.style.display = 'block';
+    // profilePicForm.style.display = 'block';
+    profilePicForm.style.opacity = '100';
 });
 profilePicForm.addEventListener('mouseleave', ()=> {
-    profilePicForm.style.display = 'none';
+    // profilePicForm.style.display = 'none';
+    profilePicForm.style.opacity = '0';
+
 });
 
 

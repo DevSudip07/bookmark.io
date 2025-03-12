@@ -37,7 +37,7 @@ function renderCategories() {
 
         // CATEGORY DELETE BUTTON
         const deleteCategoryBtn = document.createElement("button");
-        deleteCategoryBtn.innerText = "🗑️";
+        deleteCategoryBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
         deleteCategoryBtn.classList.add("delete-category");
         deleteCategoryBtn.onclick = function () {
             deleteCategory(category);
@@ -53,9 +53,11 @@ function renderCategories() {
             link.innerText = `${index + 1}. ${site.name}`;
             link.target = "_blank";
 
+            //  Buttons container
+            const btnContainer = document.createElement("div");
             // Edit Button
             const editBtn = document.createElement("button");
-            editBtn.innerText = "✏️";
+            editBtn.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
             editBtn.classList.add("edit-site");
             editBtn.onclick = function () {
                 editBookmark(category, index);
@@ -63,21 +65,22 @@ function renderCategories() {
 
             // Delete Button
             const deleteBtn = document.createElement("button");
-            deleteBtn.innerText = "❌";
+            deleteBtn.innerHTML =`<i class="fa-solid fa-delete-left"></i>`;
             deleteBtn.classList.add("delete-site");
             deleteBtn.onclick = function () {
                 deleteBookmark(category, index);
             };
 
             li.appendChild(link);
-            li.appendChild(editBtn);
-            li.appendChild(deleteBtn);
+            li.appendChild(btnContainer);
+            btnContainer.appendChild(editBtn);
+            btnContainer.appendChild(deleteBtn);
             ol.appendChild(li);
         });
 
         // ADD SITE BUTTON
         const addButton = document.createElement("button");
-        addButton.innerText = "+";
+        addButton.innerHTML = `<i class="fa-solid fa-plus"></i>`;
         addButton.classList.add("add-site");
         addButton.onclick = function () {
             addBookmark(category);

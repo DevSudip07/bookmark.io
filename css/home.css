@@ -13,20 +13,60 @@ body {
     color: white;
 }
 
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #6bbfff; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+    transition: .2s all ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffea00;
+}
+
 header {
     padding-top: 30px;
 }
 
 .profile-form {
-    display: none;
+    /* display: none; */
+    opacity: 0;
     position: absolute;
     padding: 20px;
-    background: red;
     border-radius: 15px 0px 15px 15px;
     top: 100%;
     right: 8%;
     align-content: center;
     transition: .5s all ease;
+    /* From https://css.glass */
+    background: rgba(0, 0, 84, 0.34);
+    box-shadow: 0 4px 30px rgb(0, 0, 0);
+    backdrop-filter: blur(16.6px);
+    -webkit-backdrop-filter: blur(16.6px);
+    border: 1px solid rgba(0, 0, 84, 0.11);
+    cursor: pointer;
+    
+    button {
+        padding: 5px 10px;
+        border-radius: 2px;
+        color: white;
+        font-weight: 600;
+        border: none;
+        background: #007bff;
+    }
+    button:hover {
+        cursor: pointer;
+        background-color: #0059fff0;
+    }
 }
 
 .profile-pic {
@@ -58,10 +98,11 @@ main {
 section {
     width: 100%;
     height: 100%;
-    background: #000;
+    /* background: red; */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 5px;
 }
 
 /* BOOKMARK MANAGER CODE */
@@ -73,17 +114,22 @@ aside {
 
 
     .container {
-        background: white;
+        height: 100%;
+        /* background: white; */
         padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        width: 95%;
+        width: 100%;
         text-align: center;
         margin: auto;
+        /* From https://css.glass */
+        background: rgba(0, 0, 84, 0.34);
+        box-shadow: 0 4px 30px rgb(0, 0, 0);
+        backdrop-filter: blur(16.6px);
+        -webkit-backdrop-filter: blur(16.6px);
+        border: 1px solid rgba(0, 0, 84, 0.11);
     }
 
     h1 {
-        color: #333;
+        color: white;
         margin-bottom: 20px;
         text-align: left;
         font-size: 20px;
@@ -106,19 +152,21 @@ aside {
 
     .input-group button {
         padding: 10px;
-        background-color: #28a745;
+        background-color: #007bff;
         color: white;
+        font-weight: 600;
         border: none;
         border-radius: 5px;
-        cursor: pointer;
+        transition: .2s all ease;
     }
 
     .input-group button:hover {
-        background-color: #218838;
+        cursor: pointer;
+        background-color: #0059fff0;
     }
 
     .category {
-        background: #000;
+        background: #948aff31;
         color: white;
         padding: 10px;
         margin: 10px 0;
@@ -138,8 +186,9 @@ aside {
         border: none;
         padding: 5px 10px;
         cursor: pointer;
-        margin-left: 5px;
+        margin: 0 5px;
         border-radius: 3px;
+        transition: .2s all ease;
     }
 
     .category button:hover {
@@ -147,36 +196,53 @@ aside {
     }
 
     .add-site {
-        background: rgb(4, 255, 4) !important;
+        background: rgb(0, 205, 0) !important;
     }
 
     ol {
-        margin-top: 10px;
+        margin-top: 20px;
         padding-left: 20px;
+        max-height: 200px;
+        /* background: rgba(151, 175, 255, 0.39); */
+        overflow-y: auto;
+        scroll-behavior: smooth;
     }
 
     li {
-        margin-bottom: 5px;
+        margin: 5px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-bottom: 2px;
+        border-bottom: 1px solid rgb(255, 255, 255);
     }
 
     a {
         text-decoration: none;
-        color: #FFD700;
+        color: #ffffff;
+        font-weight: 600;
+        transition: .2s all ease;
     }
 
     a:hover {
-        color: #FF4500;
+        color: #d3d3d3;
     }
 
     .edit-site {
         background: #007bff !important;
+        transition: .2s all ease;
+    }
+
+    .edit-site:hover {
+        background-color: #0059fff0 !important;
     }
 
     .delete-site {
         background: red !important;
+        transition: .2s all ease;
+    }
+    .delete-site:hover {
+        background: darkred !important;
     }
 
 }
@@ -194,5 +260,5 @@ aside {
 .right-side {
     width: 75%;
     height: 100%;
-    background: green;
+    background: rgba(95, 143, 255, 0);
 }
