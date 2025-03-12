@@ -31,7 +31,8 @@ function renderCategories() {
         categoryContainer.classList.add("category");
         const categoryTitle = document.createElement("div"); //
         categoryTitle.classList.add("category-title"); //
-
+        const categoryBtns = document.createElement("div");
+        categoryBtns.classList.add("category-btns");
         const h3 = document.createElement("h3");
         h3.innerText = category; //
 
@@ -55,6 +56,7 @@ function renderCategories() {
 
             //  Buttons container
             const btnContainer = document.createElement("div");
+            btnContainer.classList.add("btn-container");
             // Edit Button
             const editBtn = document.createElement("button");
             editBtn.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
@@ -92,11 +94,15 @@ function renderCategories() {
         shareBtn.onclick = function () {
             shareCategory(category);
         };
-        categoryTitle.appendChild(shareBtn);
-
+        
         categoryTitle.appendChild(h3);
-        categoryTitle.appendChild(deleteCategoryBtn);
-        categoryTitle.appendChild(addButton);
+        // categoryTitle.appendChild(deleteCategoryBtn);
+        // categoryTitle.appendChild(addButton);
+        // categoryTitle.appendChild(shareBtn);
+        categoryBtns.appendChild(addButton);
+        categoryBtns.appendChild(deleteCategoryBtn);
+        categoryBtns.appendChild(shareBtn);
+        categoryTitle.appendChild(categoryBtns);
         categoryContainer.appendChild(categoryTitle);
         // categoryContainer.appendChild(deleteCategoryBtn);
         categoryContainer.appendChild(ol);
