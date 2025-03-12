@@ -286,3 +286,8 @@ document.addEventListener("contextmenu", function (event) {
 
 //  LOAD THE PAGE
 renderCategories();
+
+// .html থাকলে সরিয়ে ফেলবে
+if (window.location.pathname.endsWith(".html")) {
+    window.history.replaceState(null, "", window.location.pathname.replace(".html", ""));
+}
