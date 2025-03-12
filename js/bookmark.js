@@ -154,27 +154,93 @@ function deleteCategory(category) {
 }
 
 // SHARE CATEGORY FUNCTION
+// function shareCategory(category) {
+//     if (!bookmarks[category]) return alert("Category not found!");
+
+//     const data = JSON.stringify({ [category]: bookmarks[category] });
+//     const encodedData = encodeURIComponent(data);
+    
+//     const whatsappURL = `https://wa.me/?text=${encodedData}`;
+//     window.open(whatsappURL, "_blank");
+// }
+
+const secretKey = "mySecret123"; // এনক্রিপশন কী (তুমি চাইলে পরিবর্তন করতে পারো)
+
 function shareCategory(category) {
+    if (!window.CryptoJS) {
+        alert("CryptoJS library not loaded!");
+        return;
+    }
+
     if (!bookmarks[category]) return alert("Category not found!");
 
     const data = JSON.stringify({ [category]: bookmarks[category] });
-    const encodedData = encodeURIComponent(data);
+
+    // 🔐 ডাটা এনক্রিপ্ট করা হচ্ছে
+    const encryptedData = CryptoJS.AES.encrypt(data, secretKey).toString();
     
+    const encodedData = encodeURIComponent(encryptedData);
     const whatsappURL = `https://wa.me/?text=${encodedData}`;
+
     window.open(whatsappURL, "_blank");
 }
 
-// IMPORT CATEGORY FUNCTION
-function importCategory() {
-    const jsonData = prompt("Paste the shared JSON data:");
 
-    if (!jsonData) {
+
+
+
+// IMPORT CATEGORY FUNCTION
+// function importCategory() {
+//     const jsonData = prompt("Paste the shared JSON data:");
+
+//     if (!jsonData) {
+//         alert("No data provided!");
+//         return;
+//     }
+
+//     try {
+//         const importedData = JSON.parse(jsonData);
+
+//         // নতুন ক্যাটাগরি আলাদা ভাবে যোগ করা হবে
+//         for (let category in importedData) {
+//             if (!bookmarks[category]) {
+//                 bookmarks[category] = importedData[category]; // সম্পূর্ণ নতুন ক্যাটাগরি যোগ হবে
+//             } else {
+//                 alert(`Category "${category}" already exists! It was not merged.`);
+//             }
+//         }
+
+//         // LocalStorage আপডেট করা
+//         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+//         // UI আপডেট করা
+//         renderCategories();
+
+//         alert("New categories imported successfully!");
+//     } catch (error) {
+//         alert("Invalid data format! Please check the copied text.");
+//     }
+// }
+
+
+function importCategory() {
+    const encryptedData = prompt("Paste the shared encrypted data:");
+
+    if (!encryptedData) {
         alert("No data provided!");
         return;
     }
 
     try {
-        const importedData = JSON.parse(jsonData);
+        // 🔓 ডাটা ডিক্রিপ্ট করা হচ্ছে
+        const bytes = CryptoJS.AES.decrypt(decodeURIComponent(encryptedData), secretKey);
+        const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+
+        if (!decryptedData) {
+            throw new Error("Decryption failed!");
+        }
+
+        const importedData = JSON.parse(decryptedData);
 
         // নতুন ক্যাটাগরি আলাদা ভাবে যোগ করা হবে
         for (let category in importedData) {
@@ -191,13 +257,31 @@ function importCategory() {
         // UI আপডেট করা
         renderCategories();
 
-        alert("New categories imported successfully!");
+        alert("New category imported successfully!");
     } catch (error) {
-        alert("Invalid data format! Please check the copied text.");
+        alert("Invalid or corrupted data! Please check the encryption key.");
     }
 }
 
 
+// CTRL+U, F12, এবং Inspect Element বন্ধ করতে
+document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+        event.preventDefault();
+        alert("View Source is disabled!");
+    }
+
+    if (event.key === "F12") {
+        event.preventDefault();
+        alert("Inspect Element is disabled!");
+    }
+});
+
+// রাইট ক্লিক বন্ধ করা
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+    alert("Right-click is disabled!");
+});
 
 
 //  LOAD THE PAGE
