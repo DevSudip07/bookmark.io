@@ -65,7 +65,7 @@ function renderCategories() {
 
             // Delete Button
             const deleteBtn = document.createElement("button");
-            deleteBtn.innerHTML =`<i class="fa-solid fa-delete-left"></i>`;
+            deleteBtn.innerHTML = `<i class="fa-solid fa-delete-left"></i>`;
             deleteBtn.classList.add("delete-site");
             deleteBtn.onclick = function () {
                 deleteBookmark(category, index);
@@ -85,7 +85,15 @@ function renderCategories() {
         addButton.onclick = function () {
             addBookmark(category);
         };
-        
+
+        // SHARE SITE BUTTON
+        const shareBtn = document.createElement("button");
+        shareBtn.innerHTML = `<i class="fa-solid fa-share"></i>`;
+        shareBtn.onclick = function () {
+            shareCategory(category);
+        };
+        categoryTitle.appendChild(shareBtn);
+
         categoryTitle.appendChild(h3);
         categoryTitle.appendChild(deleteCategoryBtn);
         categoryTitle.appendChild(addButton);
@@ -144,6 +152,53 @@ function deleteCategory(category) {
         renderCategories();
     }
 }
+
+// SHARE CATEGORY FUNCTION
+function shareCategory(category) {
+    if (!bookmarks[category]) return alert("Category not found!");
+
+    const data = JSON.stringify({ [category]: bookmarks[category] });
+    const encodedData = encodeURIComponent(data);
+    
+    const whatsappURL = `https://wa.me/?text=${encodedData}`;
+    window.open(whatsappURL, "_blank");
+}
+
+// IMPORT CATEGORY FUNCTION
+function importCategory() {
+    const jsonData = prompt("Paste the shared JSON data:");
+
+    if (!jsonData) {
+        alert("No data provided!");
+        return;
+    }
+
+    try {
+        const importedData = JSON.parse(jsonData);
+
+        // নতুন ক্যাটাগরি আলাদা ভাবে যোগ করা হবে
+        for (let category in importedData) {
+            if (!bookmarks[category]) {
+                bookmarks[category] = importedData[category]; // সম্পূর্ণ নতুন ক্যাটাগরি যোগ হবে
+            } else {
+                alert(`Category "${category}" already exists! It was not merged.`);
+            }
+        }
+
+        // LocalStorage আপডেট করা
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+        // UI আপডেট করা
+        renderCategories();
+
+        alert("New categories imported successfully!");
+    } catch (error) {
+        alert("Invalid data format! Please check the copied text.");
+    }
+}
+
+
+
 
 //  LOAD THE PAGE
 renderCategories();
